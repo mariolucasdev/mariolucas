@@ -1,0 +1,21 @@
+.Repos-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    transition: 1s;
+}
+
+.Repo {
+    border: 1px solid #dedede;
+    width: 20%;
+    margin: 5px;
+    text-align: center;
+    border-radius: 10px;
+    word-wrap: break-word;
+}
+
+.Repo a {
+    text-decoration: none;
+    color: #222;
+}
