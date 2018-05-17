@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import About from './components/About';
 import Repos from './components/Repos';
+import Contact from './components/Contact';
+
 import './App.css';
 
 class App extends Component {
 
   state = {
     user: [],
-    repos: []
+    repos: [],
+    page: ""
   }
 
   getUserData = () => axios.get('https://api.github.com/users/mariolucasdev');
@@ -18,7 +22,20 @@ class App extends Component {
       .then(axios.spread((user, repos) => this.setState({user: user.data, repos: repos.data})))
   }
 
+  handleClick = e => this.setState({ page: e.target.value});
+
+  selectPage(page) {
+    if(page === "repos") {
+      return <Repos repos={this.state.repos}/>;
+    } else if(page === "contact"){
+      return <Contact />;
+    } else {
+      return <About />;
+    }
+  }
   render() {
+    const {page} = this.state;
+
     return (
       <div className="App">
         <div className="Content-profile">
@@ -28,32 +45,22 @@ class App extends Component {
           <div className="Info">
             <h1>{this.state.user.name}</h1>
             <p>{this.state.user.bio}</p>
-          </div>
-          <div className="Skills">
-            <h2>Skills</h2>
-            <p>HTML</p>
-            <p>CSS</p>
-            <p>JAVASCRIPT</p>
-            <p>PHP</p>
-            <p>REACT JS</p>
-          </div>
-          <div className="Contact">
-            <h2>Contact</h2>
-            <p>mariolucasdev@gmail.com</p>
-            <p><a href="github.com/mariolucasdev">GITHUB</a></p>
-            <p><a href="https://www.linkedin.com/in/mario-lucas-de-oliveira-regis-65b369106/">LINKEDIN</a></p>
+            <div className="icons">
+              <a rel="noopener noreferrer" href="https://www.linkedin.com/in/mario-lucas-de-oliveira-regis-65b369106/" target="_blank"><div className="in"></div></a>
+              <a rel="noopener noreferrer" href={this.state.user.html_url} target="_blank"><div className="git"></div></a>
+              <a rel="noopener noreferrer" href="" target="_blank"><div className="cv"></div></a>
+            </div>
+
+            <div className="menu">
+              <button value="about" onClick={this.handleClick}>About</button>
+              <button value="repos" onClick={this.handleClick}>Repositories</button>
+              <button value="contact" onClick={this.handleClick}>Contact</button>
+            </div>
           </div>
         </div>
-      
+
         <div className="Content-info">
-          <div className="About">
-            <h1>About me</h1>
-            <p>My name is Mario Lucas I am 23 years old. I am passionate about technology and programming student for 3 years. My goal is yours is a software engineer, I currently play with JavaScript, PHP, HTML and CSS. I am studying higher education in analysis and development of systems and the Nanodegree Developer React of Udacity.</p>
-          </div>
-          <div className="Repos-list">
-              <h1>My Repositories</h1>
-              {this.state.repos.map(r => <Repos key={r.id} repo={r} />)}
-          </div>
+          {this.selectPage(page)}
         </div>
       </div>
     );

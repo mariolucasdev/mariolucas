@@ -1,73 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
 .App {
-  background-color: #000;
-  height: 200px;
+  font-family: 'Ubuntu', sans-serif;
+  color: #34495e;
+  background-image: url('assets/bkg.jpg');
+  background-position: center;
+  background-size: 100%;
+  height: 220px;
+  text-align: center;
 }
 
 .App img {
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  margin: 100px 0 0 100px;
+  border-radius: 10px;
+  margin: 120px auto -10px;
   width: 200px;
 }
 
 .Content-profile {
-  width: 20%;
-  height: 600px;
-  float: left;
-}
-
-.Content-info {
-  width: 79%;
-  height: 600px;
-  float: right;
-  margin-top: 250px;
+  width: 100%;
 }
 
 .Info {
   text-align: center;
-  width: 200px;
-  margin: 0px 0 0 100px;
 }
 
-.Skills {
-  text-align: center;
+.Info p {
+  margin-top: -20px;
 }
 
-.Contact {
-  text-align: center;
-}
-
-.About {
-  text-align: center;
-  width: 80%;
-  margin: auto;
-}
-
-.About p {
-  text-indent: 20px;
-  font-size: 20pt;
-}
-
-.Repos-list {
+.icons {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-.Repos-list h1 {
-  width: 100%;
+  align-items: center;
+  justify-content : space-evenly;
   text-align: center;
-}
-
-.Repo {
-  border: 1px solid #dedede;
   width: 20%;
-  margin: 5px;
-  text-align: center;
-  border-radius: 10px;
+  margin: 0px auto 20px;
 }
 
-.Repo a {
-  text-decoration: none;
-  color: #222;
+.in {
+  background-image: url('./assets/icons/linkedin-logo.svg');
+  background-size: 100%;
+  width: 30px;
+  height: 30px;
+}
+.git {
+  background-image: url('./assets/icons/github-sign.svg');
+  background-size: 100%;
+  width: 30px;
+  height: 30px;
+}
+.cv {
+  background-image: url('./assets/icons/cv.svg');
+  background-size: 100%;
+  width: 30px;
+  height: 30px;
+}
+
+.menu button {
+  margin: 5px 5px 20px;
+  padding: 5px;
+  border: none;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, .5);
+  font-weight: bold;
+  transition: .5s;
+  color: #2c3e50;
+}
+
+.menu button:hover {
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, .8);
+  cursor: pointer;
+  font-weight: bold;
+  transition: .5s;
 }
