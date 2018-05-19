@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Either from './components/Either';
 import About from './components/About';
 import Repos from './components/Repos';
 import Contact from './components/Contact';
@@ -24,15 +25,6 @@ class App extends Component {
 
   handleClick = e => this.setState({ page: e.target.value});
 
-  selectPage(page) {
-    if(page === "repos") {
-      return <Repos repos={this.state.repos}/>;
-    } else if(page === "contact"){
-      return <Contact />;
-    } else {
-      return <About />;
-    }
-  }
   render() {
     const {page} = this.state;
 
@@ -52,7 +44,9 @@ class App extends Component {
             </div>
 
             <div className="menu">
-              <button value="about" onClick={this.handleClick}>About</button>
+              <button value="about" onClick={this.handleClick}>
+              About
+              </button>
               <button value="repos" onClick={this.handleClick}>Repositories</button>
               <button value="contact" onClick={this.handleClick}>Contact</button>
             </div>
@@ -60,7 +54,15 @@ class App extends Component {
         </div>
 
         <div className="Content-info">
-          {this.selectPage(page)}
+          <Either
+            page={this.state.page}
+            map={{
+              '': <About />,
+              about: <About />,
+              repos: <Repos repos={this.state.repos}/>,
+              contact: <Contact />
+            }}
+          />
         </div>
       </div>
     );
